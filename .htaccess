@@ -4,6 +4,12 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
+
+# Remove /blog/ prefix
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (^|.*\/)blog/(.*)$ $1$2 [R,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
