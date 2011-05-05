@@ -19,15 +19,22 @@ function rwtCallback($string)
         return $string;
     }
 
+    $host = $rewrite[0];
+    $path = '';
+    if (preg_match('/\s*([^\/]+)(\/.*)?/', $rewrite[0], $matches)) {
+        $host = preg_quote($matches[1], '/');
+        $path = preg_quote($matches[2], '/');
+    }
+
     $string = preg_replace(
-        '/' . preg_quote($rewrite[0], '/') . '/',
+        '/' . $host . '/'
         $rewrite[1],
         $string
     );
 
     $string = preg_replace(
         '/(<\s*a[\s>])/i',
-        '\1 target="_parent"',
+        '\1 target="_parent" ',
         $string
     );
 
