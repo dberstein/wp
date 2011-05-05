@@ -27,7 +27,7 @@ function rwtCallback($string)
     }
 
     $string = preg_replace(
-        '/' . $host . '/'
+        '/' . $host . '/',
         $rewrite[1],
         $string
     );
