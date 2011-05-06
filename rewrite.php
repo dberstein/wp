@@ -38,33 +38,10 @@ function rwtCallback($string)
         $string
     );
 
-    $string = preg_replace(
-        '/[A-z]+' . preg_quote('://' . $host, '/') . '/',
-        '',
-        $string
-    );
-
-    return $string;
-}
-
-function mirrorCallback($string)
-{
-    $host = $_SERVER['HTTP_HOST'];
-    if (preg_match('/[A-z]:\/\/([^\/\"\']+)/i', $host)) {
-        $host = $matches[1];
-    }
-
-    $string = preg_replace(
-        '/[A-z]+' . preg_quote('://' . $host, '/') . '/',
-        '',
-        $string
-    );
-
     return $string;
 }
 
 if (array_key_exists('rwt', $_GET)) {
     ob_start('rwtCallback');
-} else {
-    ob_start('mirrorCallback');
 }
+
